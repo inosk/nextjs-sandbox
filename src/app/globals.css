@@ -16,6 +16,26 @@
   --color-sub-1: #44444E; /* sub 1 */
   --color-sub-2: #715A5A; /* sub 2 */
   --color-sub-3: #D3DAD9; /* sub 3 */
+
+  /* Component-level color tokens */
+  --color-primary: var(--color-brand);
+  --color-accent: var(--color-sub-2);
+  --color-muted: var(--color-sub-3);
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
+  /* Radius tokens (usable via rounded-*) */
+  --radius-button: 9999px; /* fully rounded */
+  --radius-card: 12px;
+
+  /* Shadow tokens (usable via shadow-*) */
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.06), 0 1px 3px 1px rgb(0 0 0 / 0.08);
+
+  /* Typography scale (usable via text-*) */
+  --text-display: 2rem;      /* 32px */
+  --text-title: 1.25rem;     /* 20px */
+  --text-body: 1rem;         /* 16px */
+  --text-caption: 0.8125rem; /* 13px */
 }
 
 @media (prefers-color-scheme: dark) {
