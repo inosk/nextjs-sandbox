@@ -3,11 +3,11 @@ import * as React from "react";
 type Variant = "primary" | "accent" | "outline";
 type Size = "sm" | "md" | "lg";
 
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: Variant;
   size?: Size;
   loading?: boolean;
-}
+};
 
 const base =
   "inline-flex items-center justify-center gap-2 font-medium rounded-button transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary/50 disabled:opacity-50 disabled:pointer-events-none";

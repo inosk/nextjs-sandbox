@@ -1,4 +1,5 @@
 import { Button } from "../../components/ui/button";
+import Link from "next/link";
 import { Card, CardHeader, Content as CardContent, CardFooter } from "../../components/ui/card";
 
 export default function ComponentsShowcase() {
@@ -58,8 +59,8 @@ export default function ComponentsShowcase() {
       <section className="space-y-3">
         <h2 className="text-title font-semibold">Quick Links</h2>
         <div className="flex gap-4 text-sm">
-          <a className="underline underline-offset-4" href="/colors">View Colors</a>
-          <a className="underline underline-offset-4" href="/">Home</a>
+          <Link className="underline underline-offset-4" href="/colors">View Colors</Link>
+          <Link className="underline underline-offset-4" href="/">Home</Link>
         </div>
       </section>
     </div>

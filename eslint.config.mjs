@@ -1,6 +1,7 @@
 // ESLint flat config for Next.js + TypeScript + React
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 import reactPlugin from "eslint-plugin-react";
@@ -11,6 +12,7 @@ import nextPlugin from "@next/eslint-plugin-next";
 
 const dirname =
   typeof __dirname !== "undefined" ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const compat = new FlatCompat({ baseDirectory: dirname });
 
 export default tseslint.config(
   // Ignores
@@ -26,6 +28,9 @@ export default tseslint.config(
       "eslint.config.mjs",
     ],
   },
+
+  // Next.js Core Web Vitals (compat from eslint-config-next)
+  ...compat.config({ extends: ["next/core-web-vitals"] }),
 
   // Base JS + TS recommended
   js.configs.recommended,
@@ -57,9 +62,12 @@ export default tseslint.config(
   // Project preference: allow `type` for object shapes
   {
     files: ["**/*.{ts,tsx}", "*.{ts,tsx}"],
-    rules: {
-      "@typescript-eslint/consistent-type-definitions": "off",
-    },
+    rules: { "@typescript-eslint/consistent-type-definitions": "off" },
+  },
+  {
+    files: ["src/**/*.{ts,tsx}"],
+    ignores: ["src/stories/**/*"],
+    rules: { "@typescript-eslint/consistent-type-definitions": ["error", "type"] },
   },
 
   // React + Hooks + a11y
@@ -92,12 +100,14 @@ export default tseslint.config(
   {
     files: [
       ".storybook/**/*.{js,jsx,ts,tsx}",
+      "src/stories/**/*.{js,jsx,ts,tsx}",
       "**/*.stories.@(js|jsx|ts|tsx)",
       "**/*.story.@(js|jsx|ts|tsx)",
     ],
-    plugins: { storybook },
+    plugins: { storybook, react: reactPlugin },
     rules: {
-      // You can opt into stricter Storybook rules later if needed
+      // Story content often includes raw quotes/characters
+      "react/no-unescaped-entities": "off",
     },
   }
 );
