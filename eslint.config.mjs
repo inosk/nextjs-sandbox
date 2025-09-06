@@ -42,14 +42,16 @@ export default tseslint.config(
       },
     },
   },
-  // Restrict type-aware presets strictly to TS files
-  ...tseslint.configs.recommendedTypeChecked.map((c) => ({
+  // Restrict type-aware presets strictly to TS files (strict)
+  ...tseslint.configs.strictTypeChecked.map((c) => ({
     ...c,
-    files: ["**/*.{ts,tsx}", "*.{ts,tsx}"],
+    files: ["src/**/*.{ts,tsx}", "*.{ts,tsx}"],
+    ignores: ["src/stories/**/*"],
   })),
   ...tseslint.configs.stylisticTypeChecked.map((c) => ({
     ...c,
-    files: ["**/*.{ts,tsx}", "*.{ts,tsx}"],
+    files: ["src/**/*.{ts,tsx}", "*.{ts,tsx}"],
+    ignores: ["src/stories/**/*"],
   })),
 
   // Project preference: allow `type` for object shapes
