@@ -2,14 +2,14 @@ import * as React from "react";
 
 export type Props = React.HTMLAttributes<HTMLDivElement>;
 
-export const Card = React.forwardRef<HTMLDivElement, Props>(
-  ({ className = "", ...props }, ref) => (
-    <div
-      ref={ref}
-      className={`rounded-card border border-foreground/10 bg-background shadow-card ${className}`}
-      {...props}
-    />
-  )
+export const Card = (
+  { className = "", ref, ...props }: Props & { ref?: React.Ref<HTMLDivElement> }
+) => (
+  <div
+    ref={ref}
+    className={`rounded-card border border-foreground/10 bg-background shadow-card ${className}`}
+    {...props}
+  />
 );
 Card.displayName = "Card";
 

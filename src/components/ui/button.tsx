@@ -52,27 +52,32 @@ function Spinner({ className = "" }: { className?: string }) {
   );
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, Props>(
-  (
-    { variant = "primary", size = "md", loading = false, className = "", children, ...props },
-    ref
-  ) => {
-    const variantClasses = styles[variant];
-    const sizeClasses = sizes[size];
-    return (
-      <button
-        ref={ref}
-        className={`${base} ${variantClasses} ${sizeClasses} ${className}`}
-        disabled={loading || props.disabled}
-        aria-busy={loading || undefined}
-        {...props}
-      >
-        {loading && <Spinner />}
-        <span className={loading ? "opacity-80" : undefined}>{children}</span>
-      </button>
-    );
-  }
-);
+export const Button = (
+  {
+    variant = "primary",
+    size = "md",
+    loading = false,
+    className = "",
+    children,
+    ref,
+    ...props
+  }: Props & { ref?: React.Ref<HTMLButtonElement> }
+) => {
+  const variantClasses = styles[variant];
+  const sizeClasses = sizes[size];
+  return (
+    <button
+      ref={ref}
+      className={`${base} ${variantClasses} ${sizeClasses} ${className}`}
+      disabled={loading || props.disabled}
+      aria-busy={loading || undefined}
+      {...props}
+    >
+      {loading && <Spinner />}
+      <span className={loading ? "opacity-80" : undefined}>{children}</span>
+    </button>
+  );
+};
 Button.displayName = "Button";
 
 export default Button;
